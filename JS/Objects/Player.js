@@ -2,12 +2,21 @@ var Player = function Player(Scene){
 	
 	this.scene = Scene;
 	this.mesh = BABYLON.Mesh.CreateBox("Player", 1, Scene.scene);
-	this.mesh.position = new BABYLON.Vector3(-15,2,0);
+	this.mesh.position = new BABYLON.Vector3(-15,8,0);
 	this.mesh.scaling = new BABYLON.Vector3(1,2,1);
 	var mt_Player = new BABYLON.StandardMaterial("MT_Player", Scene.scene);
 	mt_Player.diffuseColor = new BABYLON.Color3(0.047, 0.137, 0.941);
 	this.mesh.material = mt_Player;
+    var that = this;
 
+    this.mesh.actionManager = new BABYLON.ActionManager(this.scene.scene);
+
+   /* this.mesh.actionManager.registerAction(new BABYLON.SetValueAction(
+        { trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger, parameter: that.scene.objects[1].mesh }, 
+        that.mesh, "scaling", new BABYLON.Vector3(1, 1, 1)));
+    this.mesh.actionManager.registerAction(new BABYLON.SetValueAction(
+        { trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger, parameter: that.scene.objects[0].mesh }, 
+        that.mesh, "scaling", new BABYLON.Vector3(1, 1, 1)));*/
 }
 
 extend(Player, GameObject);
