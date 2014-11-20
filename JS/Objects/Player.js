@@ -9,8 +9,6 @@ var Player = function Player(Scene){
 	this.mesh.material = mt_Player;
     var that = this;
 
-    this.mesh.actionManager = new BABYLON.ActionManager(this.scene.scene);
-
 
     var that = this;
 	/*this.mesh.actionManager.registerAction(new BABYLON.SetValueAction(

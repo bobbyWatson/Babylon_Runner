@@ -1,16 +1,14 @@
 function CreateObject(type, parameters){
 	var obj = new type(parameters);
 	parameters.scene.objects.push(obj);
-	toto(obj, parameters.scene.player);
-}
-function toto (obj, player){
-	player.mesh.actionManager.registerAction(
+    obj.mesh.actionManager = new BABYLON.ActionManager(parameters.scene.scene);
+	obj.mesh.actionManager.registerAction(
 		new BABYLON.ExecuteCodeAction(
         { trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger, 
-        	parameter: obj.mesh
+        	parameter: parameters.scene.player.mesh
         },
-        function(evt){
-        	console.log(evt);
-        	player.Collision(obj)
-        }));
+        function(){
+        	parameters.scene.player.Collision(obj)
+        })
+    );
 }

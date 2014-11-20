@@ -21,15 +21,33 @@ var GameScene = function GameScene(game){
 		position : new BABYLON.Vector3(0,0,0),
 		scene : this
 	});
+
 	CreateObject(FixedWall, {
 		name : "topWall",
 		position : new BABYLON.Vector3(0,15,0),
 		scene : this
 	});
+
 	this.objects.push(this.player);
-	/*this.objects.push(new Mine(this, new BABYLON.Vector3(20,8,5)));
-	this.objects.push(new Spike(this, "top", 40, 10));
-	this.objects.push(new Spike(this, "bottom", 40, 10));*/
+
+	CreateObject(Mine, {
+		scene 		: this,
+		position 	: new BABYLON.Vector3(20,8,0) 
+	});
+
+	CreateObject(Spike, {
+		scene : this,
+		orientation : "top",
+		length : 10,
+		position : 40
+	});
+
+	CreateObject(Spike, {
+		scene : this,
+		orientation : "bottom",
+		length : 10,
+		position : 40
+	});
 
 	this.Update = function Update(){
 		this.scene.render();

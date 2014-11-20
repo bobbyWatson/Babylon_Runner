@@ -1,13 +1,13 @@
-var Spike = function Spike(Scene, orientation, positionX, length){
-	this.scene = Scene;
-	this.mesh = BABYLON.Mesh.CreateBox("spike", 1, Scene.scene);
-	this.mesh.scaling = new BABYLON.Vector3(length,2.5,4);
-	this.mesh.position.x = positionX;
-	this.speed = Scene.objectsSpeed;
-	var mt_spike = new BABYLON.StandardMaterial("MT_Spike", Scene.scene);
+var Spike = function Spike(params){
+	this.scene = params.scene;
+	this.mesh = BABYLON.Mesh.CreateBox("spike", 1, this.scene.scene);
+	this.mesh.scaling = new BABYLON.Vector3(params.length,2.5,4);
+	this.mesh.position.x = params.position;
+	this.speed = this.scene.objectsSpeed;
+	var mt_spike = new BABYLON.StandardMaterial("MT_Spike", this.scene.scene);
 	mt_spike.diffuseColor = new BABYLON.Color3(0.75,0,0);
 	this.mesh.material = mt_spike;
-	if(orientation === "top"){
+	if(params.orientation === "top"){
 		this.mesh.rotation.x = Math.PI;
 		this.mesh.position.y = 15;
 	}else{
