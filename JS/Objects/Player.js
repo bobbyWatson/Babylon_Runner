@@ -15,12 +15,15 @@ var Player = function Player(Scene){
 
     this.mesh.actionManager = new BABYLON.ActionManager(this.scene.scene);
 
-   /* this.mesh.actionManager.registerAction(new BABYLON.SetValueAction(
-        { trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger, parameter: that.scene.objects[1].mesh }, 
+
+    var that = this;
+	/*this.mesh.actionManager.registerAction(new BABYLON.SetValueAction(
+        { trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger, parameter: that.scene.objects[0].mesh }, 
         that.mesh, "scaling", new BABYLON.Vector3(1, 1, 1)));
     this.mesh.actionManager.registerAction(new BABYLON.SetValueAction(
-        { trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger, parameter: that.scene.objects[0].mesh }, 
-        that.mesh, "scaling", new BABYLON.Vector3(1, 1, 1)));*/
+        { trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger, parameter: that.scene.objects[1].mesh }, 
+        that.mesh, "position", new BABYLON.Vector3(0, 5, 0)));
+    console.log(that.scene.objects[1].mesh === that.scene.objects[0].mesh);*/
 }
 
 extend(Player, GameObject);
@@ -40,14 +43,7 @@ Player.prototype.GravityMove = function(){
 
     this.MoveVec.y = this.speed * deltaTime;
     var nextPos = this.mesh.position.add(this.MoveVec);
-
-    if(that.scene.objects[1].mesh.position.y-nextPos.y < this.mesh.scaling.y)
-    {
-      this.MoveVec.y = 0;
-    }  
-    else if(nextPos.y-that.scene.objects[0].mesh.position.y < this.mesh.scaling.y)
-    {
-      this.MoveVec.y = 0;
-    }   
-    this.mesh.position = this.mesh.position.add(this.MoveVec.scale(deltaTime));
+}
+Player.prototype.Collision = function(other){
+	console.log(other.tag);
 }
