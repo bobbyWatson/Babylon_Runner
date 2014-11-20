@@ -43,7 +43,18 @@ Player.prototype.GravityMove = function(){
 
     this.MoveVec.y = this.speed * deltaTime;
     var nextPos = this.mesh.position.add(this.MoveVec);
+
+    if(that.scene.objects[1].mesh.position.y-nextPos.y < this.mesh.scaling.y)
+    {
+      this.MoveVec.y = 0;
+    }  
+    else if(nextPos.y-that.scene.objects[0].mesh.position.y < this.mesh.scaling.y)
+    {
+      this.MoveVec.y = 0;
+    }   
+    this.mesh.position = this.mesh.position.add(this.MoveVec.scale(deltaTime));
 }
 Player.prototype.Collision = function(other){
 	console.log(other.tag);
 }
+    
