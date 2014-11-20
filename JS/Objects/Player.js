@@ -15,13 +15,7 @@ var Player = function Player(Scene){
 
 
     var that = this;
-	/*this.mesh.actionManager.registerAction(new BABYLON.SetValueAction(
-        { trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger, parameter: that.scene.objects[0].mesh }, 
-        that.mesh, "scaling", new BABYLON.Vector3(1, 1, 1)));
-    this.mesh.actionManager.registerAction(new BABYLON.SetValueAction(
-        { trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger, parameter: that.scene.objects[1].mesh }, 
-        that.mesh, "position", new BABYLON.Vector3(0, 5, 0)));
-    console.log(that.scene.objects[1].mesh === that.scene.objects[0].mesh);*/
+	
 }
 
 extend(Player, GameObject);
