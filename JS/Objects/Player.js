@@ -11,18 +11,25 @@ var Player = function Player(Scene){
 
     this.mesh.actionManager = new BABYLON.ActionManager(this.scene.scene);
 
-   /* this.mesh.actionManager.registerAction(new BABYLON.SetValueAction(
-        { trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger, parameter: that.scene.objects[1].mesh }, 
+
+    var that = this;
+	/*this.mesh.actionManager.registerAction(new BABYLON.SetValueAction(
+        { trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger, parameter: that.scene.objects[0].mesh }, 
         that.mesh, "scaling", new BABYLON.Vector3(1, 1, 1)));
     this.mesh.actionManager.registerAction(new BABYLON.SetValueAction(
-        { trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger, parameter: that.scene.objects[0].mesh }, 
-        that.mesh, "scaling", new BABYLON.Vector3(1, 1, 1)));*/
+        { trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger, parameter: that.scene.objects[1].mesh }, 
+        that.mesh, "position", new BABYLON.Vector3(0, 5, 0)));
+    console.log(that.scene.objects[1].mesh === that.scene.objects[0].mesh);*/
 }
 
 extend(Player, GameObject);
 
 Player.prototype.Update = function(){
 	this.DebugMove();
+}
+
+Player.prototype.Collision = function(other){
+	console.log(other.tag);
 }
 
 Player.prototype.DebugMove = function(){

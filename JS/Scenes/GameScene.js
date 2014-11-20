@@ -14,13 +14,22 @@ var GameScene = function GameScene(game){
 	//LIGHT
 	var light = new BABYLON.HemisphericLight("mainLight", new BABYLON.Vector3(5,-0.5,-5),this.scene);
 
+	this.player = new Player(this);
 	//BASE OBJECTS
-	this.objects.push(new FixedWall("bottomWall", 100, 2, {x : 0, y : 0, z : 5}, this.scene));
-	this.objects.push(new FixedWall("topWall", 100, 2, {x : 0, y : 15, z : 5}, this.scene));
-	this.objects.push(new Player(this));
-	this.objects.push(new Mine(this, new BABYLON.Vector3(20,8,5)));
+	CreateObject(FixedWall, {
+		name : "bottomWall",
+		position : new BABYLON.Vector3(0,0,0),
+		scene : this
+	});
+	CreateObject(FixedWall, {
+		name : "topWall",
+		position : new BABYLON.Vector3(0,15,0),
+		scene : this
+	});
+	this.objects.push(this.player);
+	/*this.objects.push(new Mine(this, new BABYLON.Vector3(20,8,5)));
 	this.objects.push(new Spike(this, "top", 40, 10));
-	this.objects.push(new Spike(this, "bottom", 40, 10));
+	this.objects.push(new Spike(this, "bottom", 40, 10));*/
 
 	this.Update = function Update(){
 		this.scene.render();
