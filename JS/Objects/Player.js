@@ -5,7 +5,7 @@ var Player = function Player(Scene){
     this.score = 0;
     this.floored = true;
     this.scene = Scene;
-    this.speed = -3;
+    this.speed = -.5;
     this.MoveVec = new BABYLON.Vector3(0,0,0);
     this.mesh = BABYLON.Mesh.CreateBox("Player", 1, Scene.scene);
     this.mesh.position = new BABYLON.Vector3(-15,5,0);
@@ -70,6 +70,7 @@ Player.prototype.Collision = function(other){
 	if(other.tag === "Collectible"){
         this.score++;
         DestroyObject(other, null, this.scene);
+        this.scene.CoinEarned(this.score);
     }else if(other.tag === "Enemy"){
         console.log("t'es mort");
         //DestroyObject(other, null, this.scene);

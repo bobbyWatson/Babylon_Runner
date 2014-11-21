@@ -4,7 +4,13 @@ var GameScene = function GameScene(game){
 	this.scene = new BABYLON.Scene(game.engine);
 	this.inputs = new InputManager(); 
 	this.objects = [];
-	this.objectsSpeed = 1;
+	this.timePast = 0;
+	this.LD = [
+		{nextLevelCoins : 30,speed : 1, frequency : 15},
+		{nextLevelCoins : 100, speed : 1.5, frequency : 13},
+		{speed : 2, frequency : 10}
+	]
+	this.currentLevel = 0;
 	//CAMERA
 	var camera = new BABYLON.FreeCamera("mainCam", new BABYLON.Vector3(0,0,0), this.scene);
 	camera.position = new BABYLON.Vector3(0, 11, -22);
@@ -37,20 +43,25 @@ var GameScene = function GameScene(game){
 
 	this.objects.push(this.player);
 
-    CreatePattern("MineV",new BABYLON.Vector3( 0, 8, 0), this);
-    CreatePattern("MovingMine",new BABYLON.Vector3( 40, 5, 0), this);
-    CreatePattern("SpikeTop",new BABYLON.Vector3( 5, 0, 0), this);
-    CreatePattern("SpikeBottom",new BABYLON.Vector3( 6, 0, 0), this);
-    CreatePattern("MovingWall1",new BABYLON.Vector3( 10, 5, 0), this);
+	this.Update = function Update(deltaTime){
+		this.timePast+= deltaTime
+		if(this.timePast >= this.LD[this.currentLevel].frequency){
+			this.timePast -= this.LD[this.currentLevel].frequency;
+			var randomNB = Math.floor(Math.random() * Object.keys(patterns).length)
+			var pattern = patterns[randomNB];
+            console.log(pattern);
+			CreatePattern(pattern,new BABYLON.Vector3( 50, 0, 0), this);
+		}
 
-    CreateObject(Collectible, {
-        scene 		: this,
-        position 	: new BABYLON.Vector3(80,8,0)
-    });
-	this.Update = function Update(){
 		this.scene.render();
 		for(var i = 0; i < this.objects.length; i++){
-			this.objects[i].Update();
+			this.objects[i].Update(deltaTime);
 		}
+	}
+}
+
+GameScene.prototype.CoinEarned = function CoinEarned(coinAmount){
+	if(coinAmount >= this.LD[this.currentLevel].nextLevelCoins){
+		this.currentLevel++;
 	}
 }

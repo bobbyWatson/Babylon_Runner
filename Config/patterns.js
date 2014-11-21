@@ -1,64 +1,11 @@
-var patterns = {
-	"MineLine" : [
-		{
-			name : Mine,
-			params : {	
-				position : {
-					x 	: 0,
-					y	: 0,
-					z	: 0
-				}
-			}
-		},
-		{
-			name : Mine,
-			params : {	
-				position : {
-					x 	: 2,
-					y	: 0,
-					z	: 0
-				}
-			}
-		},
-		{
-			name : Mine,
-			params : {	
-				position : {
-					x 	: 4,
-					y	: 0,
-					z	: 0
-				}
-			}
-		},
-		{
-			name : Mine,
-			params : {	
-				position : {
-					x 	: 6,
-					y	: 0,
-					z	: 0
-				}
-			}
-		},
-		{
-			name : Mine,
-			params : {	
-				position : {
-					x 	: 8,
-					y	: 0,
-					z	: 0
-				}
-			}
-		}
-	],
-
-	"MineV" : [
+var patterns = [
+	[
 		{
 			name : Mine,
 			params : {
 				position : {
 					x 	: 0,
-					y	: 0,
+					y	: 4,
 					z	: 0
 				}
 			}
@@ -104,49 +51,49 @@ var patterns = {
 			}
 		}
 	],
-
-    "SpikeTop" : [
+    //Another
+    [
         {
             name : Spike,
             params : {
                 orientation : "top",
                 length : 10,
-                position : {x:0,y:0,z:0}
+                position : {x:0,y:5,z:0}
             }
         }
     ],
-
-    "SpikeBottom" : [
+    //SpikeBottom
+    [
         {
             name : Spike,
             params : {
                 orientation : "bottom",
                 length : 10,
-                position : {x:0,y:0,z:0}
+                position : {x:0,y:1,z:0}
             }
         }
     ],
-
-    "MovingWall1" : [
+    //MovingWall
+    [
         {
             name : MovingWall,
             params : {
                 length : 10,
-                position : {x:0,y:0,z:0}
+                position : {x:0,y:3,z:0}
             }
         }
     ],
-
-    "MovingMine" : [
+    //MovingMine
+    [
         {
             name : MovingMine,
             params : {
                 position : {
                     x 	: 0,
-                    y	: 0,
+                    y	: 5,
                     z	: 0
                 }
             }
         }
     ]
-}
+]
