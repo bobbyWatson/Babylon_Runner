@@ -20,7 +20,7 @@ var Player = function Player(Scene){
         scene : this.scene,
         emitter : this,
         size : 1.2,
-        rate : 60,
+        rate : 40,
         life : 1.5,
         minEmitBox : new BABYLON.Vector3(-0.5, 0, 0),
         maxEmitBox : new BABYLON.Vector3(-0.5, 0, 0),

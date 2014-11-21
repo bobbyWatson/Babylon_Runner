@@ -10,7 +10,7 @@ var InvisibleWall = function InvisibleWall(params){
         scene : params.scene,
         emitter : this,
         size : 1,
-        rate : 80,
+        rate : 10,
         life : 8 ,
         minEmitBox : new BABYLON.Vector3(0, 3, 0),
         maxEmitBox : new BABYLON.Vector3(0, -3, 0),

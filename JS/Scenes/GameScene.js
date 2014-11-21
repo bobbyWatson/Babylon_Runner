@@ -25,13 +25,13 @@ var GameScene = function GameScene(game){
 	//BASE OBJECTS
 	CreateObject(FixedWall, {
 		name : "bottomWall",
-		position : new BABYLON.Vector3(0,0,0),
+		position : new BABYLON.Vector3(0,-0.5,0),
 		scene : this
 	});
 
 	CreateObject(FixedWall, {
 		name : "topWall",
-		position : new BABYLON.Vector3(0,15,0),
+		position : new BABYLON.Vector3(0,17,0),
 		scene : this
 	});
 
