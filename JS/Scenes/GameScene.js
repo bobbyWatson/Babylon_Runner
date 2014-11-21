@@ -40,6 +40,10 @@ var GameScene = function GameScene(game){
     CreatePattern("SpikeBottom",new BABYLON.Vector3( 6, 0, 0), this);
     CreatePattern("MovingWall1",new BABYLON.Vector3( 10, 5, 0), this);
 
+    CreateObject(Collectible, {
+        scene 		: this,
+        position 	: new BABYLON.Vector3(80,8,0)
+    });
 	this.Update = function Update(){
 		this.scene.render();
 		for(var i = 0; i < this.objects.length; i++){
