@@ -15,6 +15,15 @@ function CreateObject(type, parameters){
 
 function DestroyObject(obj, index, scene){
 	obj.mesh.dispose();
+	if(index == null){
+		var _i = 0;
+		for(var i = 0; i < scene.objects.length; i++){
+			if(scene.objects[i] == obj){
+				index = i;
+				break;
+			}
+		}
+	}
 	scene.objects.slice(index,1);
 }
 
