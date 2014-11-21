@@ -1,5 +1,5 @@
 var FixedWall = function FixedWall(params){
-	this.tag = params.name;
+	this.tag = "Wall";
 	this.mesh = BABYLON.Mesh.CreateBox(params.name, 1, params.scene.scene);
 	this.mesh.position = params.position;
 	this.mesh.scaling = new BABYLON.Vector3(100,2, 3);
