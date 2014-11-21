@@ -35,6 +35,8 @@ var GameScene = function GameScene(game){
 		position 	: new BABYLON.Vector3(20,8,0) 
 	});
 
+	CreatePattern("MineLine",new BABYLON.Vector3( 50, 8, 0), this);
+
 	CreateObject(Spike, {
 		scene : this,
 		orientation : "top",

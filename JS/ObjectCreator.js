@@ -12,3 +12,20 @@ function CreateObject(type, parameters){
         })
     );
 }
+
+function DestroyObject(obj, index, scene){
+	obj.mesh.dispose();
+	scene.objects.slice(index,1);
+}
+
+function CreatePattern(patternName, position, scene){
+	var pattern = patterns[patternName];
+	for(var i = 0; i < pattern.length; i++){
+		var _param = pattern[i].params;
+		_param.scene = scene;
+		var pos = _param.position;
+		_param.position = new BABYLON.Vector3(pos.x + position.x, pos.y + position.y, pos.z + position.z);
+		var obj = new pattern[i].name(_param);
+		scene.objects.push(obj);
+	}
+}
