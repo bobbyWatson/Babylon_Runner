@@ -11,6 +11,7 @@ var GameScene = function GameScene(game){
 	camera.rotation = new BABYLON.Vector3(0.15,0,0);
 	this.scene.clearColor = new BABYLON.Color3(0,0,0);
 	//camera.attachControl(document.getElementById("renderCanvas"));
+
 	//LIGHT
 	var light = new BABYLON.HemisphericLight("mainLight", new BABYLON.Vector3(5,-0.5,-5),this.scene);
 
@@ -40,6 +41,13 @@ var GameScene = function GameScene(game){
 		scene 		: this,
 		position 	: new BABYLON.Vector3(20,8,0) 
 	});
+
+	CreateObject(Collectible, {
+		scene 		: this,
+		position 	: new BABYLON.Vector3(80,8,0) 
+	});
+
+	CreatePattern("MineLine",new BABYLON.Vector3( 50, 8, 0), this);
 
 	CreateObject(Spike, {
 		scene : this,

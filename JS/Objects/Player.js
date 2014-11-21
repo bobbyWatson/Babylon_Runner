@@ -2,6 +2,7 @@ var Player = function Player(Scene){
     this.changeDelayMax = 1;
     this.changeDelay = 0;
     this.moving;
+    this.score = 0;
     this.floored = true;
     this.scene = Scene;
     this.speed = -3;
@@ -66,7 +67,13 @@ Player.prototype.GravityMove = function(){
     	this.mesh.position = this.mesh.position.add(this.MoveVec.scale(deltaTime));
 }
 Player.prototype.Collision = function(other){
-	console.log(other.tag);
+	if(other.tag === "Collectible"){
+        this.score++;
+        DestroyObject(other, null, this.scene);
+    }else if(other.tag === "Enemy"){
+        console.log("t'es mort");
+        DestroyObject(other, null, this.scene);
+    }
 }
 
 Player.prototype.Intersects = function Intersects(myNextPos, myScale, otherPos, otherScale){
