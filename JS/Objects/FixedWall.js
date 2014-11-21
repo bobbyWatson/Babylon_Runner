@@ -14,9 +14,12 @@ var FixedWall = function FixedWall(params){
             uniforms: ["worldViewProjection","worldView"]
         });
 	this.mesh.material = this.wallsMaterial;
+    this.time = 0;
+        this.wallsMaterial.setFloat("time", this.time);
 };
 extend(FixedWall, GameObject);
 
 FixedWall.prototype.Update = function(deltaTime) {
-        this.wallsMaterial.setFloat("time", deltaTime)
+        this.wallsMaterial.setFloat("time", this.time);
+        this.time += 0.02;
 }
