@@ -35,32 +35,10 @@ var GameScene = function GameScene(game){
 
 	this.objects.push(this.player);
 
-	CreateObject(Mine, {
-		scene 		: this,
-		position 	: new BABYLON.Vector3(20,8,0) 
-	});
-
-	CreatePattern("MineLine",new BABYLON.Vector3( 50, 8, 0), this);
-
-	CreateObject(Spike, {
-		scene : this,
-		orientation : "top",
-		length : 10,
-		position : 40
-	});
-
-	CreateObject(Spike, {
-		scene : this,
-		orientation : "bottom",
-		length : 10,
-		position : 40
-	});
-
-	CreateObject(MovingWall, {
-		scene : this,
-		length : 10,
-		position : new BABYLON.Vector3(30,5,0)
-	});
+	CreatePattern("MineV",new BABYLON.Vector3( 0, 8, 0), this);
+    CreatePattern("SpikeTop",new BABYLON.Vector3( 5, 0, 0), this);
+    CreatePattern("SpikeBottom",new BABYLON.Vector3( 6, 0, 0), this);
+    CreatePattern("MovingWall1",new BABYLON.Vector3( 10, 5, 0), this);
 
 	this.Update = function Update(){
 		this.scene.render();
