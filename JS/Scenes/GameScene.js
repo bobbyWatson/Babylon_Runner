@@ -37,7 +37,8 @@ var GameScene = function GameScene(game){
 
 	this.objects.push(this.player);
 
-	CreatePattern("MineV",new BABYLON.Vector3( 0, 8, 0), this);
+    CreatePattern("MineV",new BABYLON.Vector3( 0, 8, 0), this);
+    CreatePattern("MovingMine",new BABYLON.Vector3( 40, 5, 0), this);
     CreatePattern("SpikeTop",new BABYLON.Vector3( 5, 0, 0), this);
     CreatePattern("SpikeBottom",new BABYLON.Vector3( 6, 0, 0), this);
     CreatePattern("MovingWall1",new BABYLON.Vector3( 10, 5, 0), this);

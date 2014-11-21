@@ -72,7 +72,7 @@ Player.prototype.Collision = function(other){
         DestroyObject(other, null, this.scene);
     }else if(other.tag === "Enemy"){
         console.log("t'es mort");
-        DestroyObject(other, null, this.scene);
+        //DestroyObject(other, null, this.scene);
     }
 }
 

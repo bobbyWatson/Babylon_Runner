@@ -55,7 +55,7 @@ var patterns = {
 	"MineV" : [
 		{
 			name : Mine,
-			params : {	
+			params : {
 				position : {
 					x 	: 0,
 					y	: 0,
@@ -133,6 +133,19 @@ var patterns = {
             params : {
                 length : 10,
                 position : {x:0,y:0,z:0}
+            }
+        }
+    ],
+
+    "MovingMine" : [
+        {
+            name : MovingMine,
+            params : {
+                position : {
+                    x 	: 0,
+                    y	: 0,
+                    z	: 0
+                }
             }
         }
     ]
