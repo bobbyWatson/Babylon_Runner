@@ -8,7 +8,7 @@ var Game = function Game(engine){
 
 
 	engine.runRenderLoop(function() {
-		var deltaTime = BABYLON.Tools.GetDeltaTime() / 100;
+		var deltaTime = BABYLON.Tools.GetDeltaTime() / 1000;
 		_this.currentScene.Update(deltaTime);
 	});
 }

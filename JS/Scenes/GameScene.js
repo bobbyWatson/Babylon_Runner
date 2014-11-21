@@ -6,9 +6,9 @@ var GameScene = function GameScene(game){
 	this.objects = [];
 	this.timePast = 0;
 	this.LD = [
-		{nextLevelCoins : 30,speed : 1, frequency : 15},
-		{nextLevelCoins : 100, speed : 1.5, frequency : 13},
-		{speed : 2, frequency : 10}
+		{nextLevelCoins : 30,speed : 1, frequency : 1.5},
+		{nextLevelCoins : 100, speed : 1.5, frequency : 1.3},
+		{speed : 2, frequency : 1.0}
 	]
 	this.currentLevel = 0;
 	//CAMERA
@@ -16,7 +16,7 @@ var GameScene = function GameScene(game){
 	camera.position = new BABYLON.Vector3(0, 11, -22);
 	camera.rotation = new BABYLON.Vector3(0.15,0,0);
 	this.scene.clearColor = new BABYLON.Color3(0,0,0);
-	//camera.attachControl(document.getElementById("renderCanvas"));
+	camera.attachControl(document.getElementById("renderCanvas"));
 
 	//LIGHT
 	var light = new BABYLON.HemisphericLight("mainLight", new BABYLON.Vector3(5,-0.5,-5),this.scene);
@@ -49,7 +49,6 @@ var GameScene = function GameScene(game){
 			this.timePast -= this.LD[this.currentLevel].frequency;
 			var randomNB = Math.floor(Math.random() * Object.keys(patterns).length)
 			var pattern = patterns[randomNB];
-            console.log(pattern);
 			CreatePattern(pattern,new BABYLON.Vector3( 50, 0, 0), this);
 		}
 

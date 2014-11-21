@@ -5,10 +5,10 @@ var Player = function Player(Scene){
     this.score = 0;
     this.floored = true;
     this.scene = Scene;
-    this.speed = -3;
+    this.speed = -10;
     this.MoveVec = new BABYLON.Vector3(0,0,0);
     this.mesh = BABYLON.Mesh.CreateBox("Player", 1, Scene.scene);
-    this.mesh.position = new BABYLON.Vector3(-15,5,0);
+    this.mesh.position = new BABYLON.Vector3(-15,10,0);
     this.mesh.scaling = new BABYLON.Vector3(1,2,1);
     var mt_Player = new BABYLON.StandardMaterial("MT_Player", Scene.scene);
     mt_Player.diffuseColor = new BABYLON.Color3(0.047, 0.137, 0.941);
@@ -32,12 +32,11 @@ var Player = function Player(Scene){
 
 extend(Player, GameObject);
 
-Player.prototype.Update = function(){
-    this.GravityMove();
+Player.prototype.Update = function(deltaTime){
+    this.GravityMove(deltaTime);
 }
 
-Player.prototype.GravityMove = function(){
-    var deltaTime = BABYLON.Tools.GetDeltaTime()*(1/60);
+Player.prototype.GravityMove = function(deltaTime){
     var move = true;
     this.changeDelay += deltaTime;
     var that = this;
@@ -47,7 +46,6 @@ Player.prototype.GravityMove = function(){
     }
     this.MoveVec.y = this.speed * deltaTime;
     var nextPos = this.mesh.position.add(this.MoveVec);
-
     this.floored = false;
     for(var i = 0; i < this.scene.objects.length; i++){
     	if(this.scene.objects[i].tag == "Wall"){
@@ -64,7 +62,7 @@ Player.prototype.GravityMove = function(){
     	}
     }
     if(move)
-    	this.mesh.position = this.mesh.position.add(this.MoveVec.scale(deltaTime));
+    	this.mesh.position = this.mesh.position.add(this.MoveVec);
 }
 Player.prototype.Collision = function(other){
 	if(other.tag === "Collectible"){
@@ -78,11 +76,11 @@ Player.prototype.Collision = function(other){
 }
 
 Player.prototype.Intersects = function Intersects(myNextPos, myScale, otherPos, otherScale){
-	return (!(
-		myNextPos.x - myScale.x/2 >= otherPos.x + otherScale.x / 2 	||
-		myNextPos.x + myScale.x/2 <= otherPos.x - otherScale.x / 2 	||
-		myNextPos.y + myScale.y/2 <= otherPos.y - otherScale.y/2 	||
-		myNextPos.y - myScale.y/2 >= otherPos.y + otherScale.y/2
-	));
+	return (
+        !(myNextPos.x - myScale.x/2 >= otherPos.x + otherScale.x / 2 )	&&
+		!(myNextPos.x + myScale.x/2 <= otherPos.x - otherScale.x / 2 )	&&
+		!(myNextPos.y + myScale.y/2 <= otherPos.y - otherScale.y/2) 	&&
+		!(myNextPos.y - myScale.y/2 >= otherPos.y + otherScale.y/2)
+	);
 }
     
