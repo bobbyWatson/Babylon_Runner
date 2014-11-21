@@ -1,18 +1,18 @@
 var Player = function Player(Scene){
-    this.changeDelayMax = 5;
+    this.changeDelayMax = 1;
     this.changeDelay = 0;
     this.moving;
+    this.floored = true;
     this.scene = Scene;
     this.speed = -3;
     this.MoveVec = new BABYLON.Vector3(0,0,0);
     this.mesh = BABYLON.Mesh.CreateBox("Player", 1, Scene.scene);
-    this.mesh.position = new BABYLON.Vector3(-15,2.5,0);
+    this.mesh.position = new BABYLON.Vector3(-15,5,0);
     this.mesh.scaling = new BABYLON.Vector3(1,2,1);
     var mt_Player = new BABYLON.StandardMaterial("MT_Player", Scene.scene);
     mt_Player.diffuseColor = new BABYLON.Color3(0.047, 0.137, 0.941);
     this.mesh.material = mt_Player;
     var that = this;
-
 
     var that = this;
 	
@@ -26,27 +26,44 @@ Player.prototype.Update = function(){
 
 Player.prototype.GravityMove = function(){
     var deltaTime = BABYLON.Tools.GetDeltaTime()*(1/60);
+    var move = true;
     this.changeDelay += deltaTime;
     var that = this;
-    if(this.scene.inputs.GetKey(32) && this.changeDelay > this.changeDelayMax){   
+    if(this.scene.inputs.GetKey(32) && this.changeDelay > this.changeDelayMax && this.floored){   
         this.changeDelay = 0;
         this.speed = -this.speed
     }
-
     this.MoveVec.y = this.speed * deltaTime;
     var nextPos = this.mesh.position.add(this.MoveVec);
 
-    if(that.scene.objects[1].mesh.position.y-nextPos.y < this.mesh.scaling.y)
-    {
-      this.MoveVec.y = 0;
-    }  
-    else if(nextPos.y-that.scene.objects[0].mesh.position.y < this.mesh.scaling.y)
-    {
-      this.MoveVec.y = 0;
-    }   
-    this.mesh.position = this.mesh.position.add(this.MoveVec.scale(deltaTime));
+    this.floored = false;
+    for(var i = 0; i < this.scene.objects.length; i++){
+    	if(this.scene.objects[i].tag == "Wall"){
+    		if(this.Intersects(nextPos, this.mesh.scaling, this.scene.objects[i].mesh.position, this.scene.objects[i].mesh.scaling)){
+    			this.MoveVec.y = 0;
+    			move = 0;
+    			this.floored = true;
+    			if(this.mesh.position.y < this.scene.objects[i].mesh.position.y){
+					this.mesh.position.y = this.scene.objects[i].mesh.position.y - (this.mesh.scaling.y/2 + this.scene.objects[i].mesh.scaling.y/2); - 0.1;
+    			}else{
+    				this.mesh.position.y = this.scene.objects[i].mesh.position.y + (this.mesh.scaling.y/2 + this.scene.objects[i].mesh.scaling.y/2) + 0.1;
+    			}
+    		}
+    	}
+    }
+    if(move)
+    	this.mesh.position = this.mesh.position.add(this.MoveVec.scale(deltaTime));
 }
 Player.prototype.Collision = function(other){
 	console.log(other.tag);
+}
+
+Player.prototype.Intersects = function Intersects(myNextPos, myScale, otherPos, otherScale){
+	return (!(
+		myNextPos.x - myScale.x/2 >= otherPos.x + otherScale.x / 2 	||
+		myNextPos.x + myScale.x/2 <= otherPos.x - otherScale.x / 2 	||
+		myNextPos.y + myScale.y/2 <= otherPos.y - otherScale.y/2 	||
+		myNextPos.y - myScale.y/2 >= otherPos.y + otherScale.y/2
+	));
 }
     

@@ -49,6 +49,12 @@ var GameScene = function GameScene(game){
 		position : 40
 	});
 
+	CreateObject(MovingWall, {
+		scene : this,
+		length : 10,
+		position : new BABYLON.Vector3(30,5,0)
+	});
+
 	this.Update = function Update(){
 		this.scene.render();
 		for(var i = 0; i < this.objects.length; i++){
