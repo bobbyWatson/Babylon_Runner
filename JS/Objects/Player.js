@@ -15,8 +15,19 @@ var Player = function Player(Scene){
     this.mesh.material = mt_Player;
     var that = this;
 
-    var that = this;
-	
+    Particle({
+        name : "trail",
+        scene : this.scene,
+        emitter : this,
+        size : 1.2,
+        rate : 60,
+        life : 1.5,
+        minEmitBox : new BABYLON.Vector3(-0.5, 0, 0),
+        maxEmitBox : new BABYLON.Vector3(-0.5, 0, 0),
+        img : "img/particle.png",
+        dir1 : new BABYLON.Vector3(-40, 0, 0),
+        dir2 : new BABYLON.Vector3(-40, 0, 0)
+    });
 }
 
 extend(Player, GameObject);
