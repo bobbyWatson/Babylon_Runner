@@ -1,5 +1,6 @@
 var Spike = function Spike(params){
 	this.scene = params.scene;
+	this.tag = "Enemy"
 	this.mesh = BABYLON.Mesh.CreateBox("spike", 1, this.scene.scene);
 	this.mesh.scaling = new BABYLON.Vector3(params.length,2.5,4);
 	this.mesh.position.x = params.position;
