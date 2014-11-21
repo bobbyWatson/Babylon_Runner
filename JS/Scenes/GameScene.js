@@ -28,6 +28,11 @@ var GameScene = function GameScene(game){
 		scene : this
 	});
 
+	Background({
+		name : "sky",
+		scene : this
+	});
+
 	this.objects.push(this.player);
 
 	CreateObject(Mine, {
