@@ -27,8 +27,7 @@ function DestroyObject(obj, index, scene){
 	scene.objects.slice(index,1);
 }
 
-function CreatePattern(patternName, position, scene){
-	var pattern = patterns[patternName];
+function CreatePattern(pattern, position, scene){
 	for(var i = 0; i < pattern.length; i++){
 		var _param = pattern[i].params;
 		_param.scene = scene;

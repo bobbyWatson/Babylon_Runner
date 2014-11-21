@@ -4,7 +4,13 @@ var GameScene = function GameScene(game){
 	this.scene = new BABYLON.Scene(game.engine);
 	this.inputs = new InputManager(); 
 	this.objects = [];
-	this.objectsSpeed = 1;
+	this.timePast = 0;
+	this.LD = [
+		{nextLevelCoins : 30,speed : 1, frequency : 15},
+		{nextLevelCoins : 100, speed : 1.5, frequency : 13},
+		{speed : 2, frequency : 10}
+	]
+	this.currentLevel = 0;
 	//CAMERA
 	var camera = new BABYLON.FreeCamera("mainCam", new BABYLON.Vector3(0,0,0), this.scene);
 	camera.position = new BABYLON.Vector3(0, 11, -22);
@@ -37,42 +43,25 @@ var GameScene = function GameScene(game){
 
 	this.objects.push(this.player);
 
-	CreateObject(Mine, {
-		scene 		: this,
-		position 	: new BABYLON.Vector3(20,8,0) 
-	});
+	this.Update = function Update(deltaTime){
+		this.timePast+= deltaTime
+		if(this.timePast >= this.LD[this.currentLevel].frequency){
+			this.timePast -= this.LD[this.currentLevel].frequency;
+			var randomNB = Math.floor(Math.random() * Object.keys(patterns).length)
+			var pattern = patterns[randomNB];
+            console.log(pattern);
+			CreatePattern(pattern,new BABYLON.Vector3( 50, 0, 0), this);
+		}
 
-	CreateObject(Collectible, {
-		scene 		: this,
-		position 	: new BABYLON.Vector3(80,8,0) 
-	});
-
-	CreatePattern("MineLine",new BABYLON.Vector3( 50, 8, 0), this);
-
-	CreateObject(Spike, {
-		scene : this,
-		orientation : "top",
-		length : 10,
-		position : 40
-	});
-
-	CreateObject(Spike, {
-		scene : this,
-		orientation : "bottom",
-		length : 10,
-		position : 40
-	});
-
-	CreateObject(MovingWall, {
-		scene : this,
-		length : 10,
-		position : new BABYLON.Vector3(30,5,0)
-	});
-
-	this.Update = function Update(){
 		this.scene.render();
 		for(var i = 0; i < this.objects.length; i++){
-			this.objects[i].Update();
+			this.objects[i].Update(deltaTime);
 		}
+	}
+}
+
+GameScene.prototype.CoinEarned = function CoinEarned(coinAmount){
+	if(coinAmount >= this.LD[this.currentLevel].nextLevelCoins){
+		this.currentLevel++;
 	}
 }

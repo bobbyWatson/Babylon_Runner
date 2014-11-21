@@ -70,9 +70,10 @@ Player.prototype.Collision = function(other){
 	if(other.tag === "Collectible"){
         this.score++;
         DestroyObject(other, null, this.scene);
+        this.scene.CoinEarned(this.score);
     }else if(other.tag === "Enemy"){
         console.log("t'es mort");
-        DestroyObject(other, null, this.scene);
+        //DestroyObject(other, null, this.scene);
     }
 }
 
