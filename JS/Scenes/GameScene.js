@@ -9,8 +9,9 @@ var GameScene = function GameScene(game){
 	var camera = new BABYLON.FreeCamera("mainCam", new BABYLON.Vector3(0,0,0), this.scene);
 	camera.position = new BABYLON.Vector3(0, 11, -22);
 	camera.rotation = new BABYLON.Vector3(0.15,0,0);
-	this.scene.clearColor = new BABYLON.Color3(0.02,0.75,0.75);
-	camera.attachControl(document.getElementById("renderCanvas"));
+	this.scene.clearColor = new BABYLON.Color3(0,0,0);
+	//camera.attachControl(document.getElementById("renderCanvas"));
+
 	//LIGHT
 	var light = new BABYLON.HemisphericLight("mainLight", new BABYLON.Vector3(5,-0.5,-5),this.scene);
 
@@ -28,8 +29,9 @@ var GameScene = function GameScene(game){
 		scene : this
 	});
 
-	Background({
-		name : "sky",
+	CreateObject(InvisibleWall, {
+		name : "Emitter",
+		position : new BABYLON.Vector3(30,8,10),
 		scene : this
 	});
 
