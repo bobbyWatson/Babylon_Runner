@@ -1,4 +1,5 @@
 var patterns = [
+	//mines
 	[
 		{
 			name : Mine,
@@ -95,5 +96,28 @@ var patterns = [
                 }
             }
         }
+    ],
+    //coins
+    [
+    	{
+			name : Collectible,
+			params : {	
+				position : {
+					x 	: -2,
+					y	: 10,
+					z	: 0
+				}
+			}
+		},
+		{
+			name : Collectible,
+			params : {	
+				position : {
+					x 	: 2,
+					y	: 10,
+					z	: 0
+				}
+			}
+		}
     ]
 ]

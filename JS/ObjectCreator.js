@@ -29,10 +29,12 @@ function DestroyObject(obj, index, scene){
 
 function CreatePattern(pattern, position, scene){
 	for(var i = 0; i < pattern.length; i++){
-		var _param = pattern[i].params;
-		_param.scene = scene;
-		var pos = _param.position;
-		_param.position = new BABYLON.Vector3(pos.x + position.x, pos.y + position.y, pos.z + position.z);
-		CreateObject(pattern[i].name, _param);
+		var param = Object.create(pattern[i].params);
+		var pos = param.position;
+		param.scene = scene;
+		var pos = param.position;
+		param.position = new BABYLON.Vector3(pos.x + position.x, pos.y + position.y, pos.z + position.z);
+		console.log(param.position.x);
+		CreateObject(pattern[i].name, param);
 	}
 }
