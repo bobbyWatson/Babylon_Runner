@@ -15,8 +15,5 @@ var Particle = function Particle(params){
     particleSystem.direction1 = params.dir1;
     particleSystem.direction2 = params.dir2;
     particleSystem.start();
+    return particleSystem;
 };
-
-Particle.prototype.Stop = function(){
-    particleSystem.stop();
-}

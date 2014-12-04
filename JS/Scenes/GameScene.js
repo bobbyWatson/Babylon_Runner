@@ -11,6 +11,7 @@ var GameScene = function GameScene(game){
 		{speed : 20, frequency : 1.0}
 	]
 	this.currentLevel = 0;
+	this.running = true;
 	//CAMERA
 	var camera = new BABYLON.FreeCamera("mainCam", new BABYLON.Vector3(0,0,0), this.scene);
 	camera.position = new BABYLON.Vector3(0, 11, -22);
@@ -54,17 +55,19 @@ var GameScene = function GameScene(game){
 
 	this.Update = function Update(deltaTime){
 		this.timePast+= deltaTime
-		if(this.timePast >= this.LD[this.currentLevel].frequency){
-			this.timePast -= this.LD[this.currentLevel].frequency;
-			var randomNB = Math.floor(Math.random() * Object.keys(patterns).length)
-			var pattern = patterns[randomNB];
-			CreatePattern(pattern,new BABYLON.Vector3( 50, 0, 0), this);
-		}
 
-		this.scene.render();
-		for(var i = 0; i < this.objects.length; i++){
-			this.objects[i].Update(deltaTime);
+		if(this.running){
+			if(this.timePast >= this.LD[this.currentLevel].frequency){
+				this.timePast -= this.LD[this.currentLevel].frequency;
+				var randomNB = Math.floor(Math.random() * Object.keys(patterns).length)
+				var pattern = patterns[randomNB];
+				CreatePattern(pattern,new BABYLON.Vector3( 50, 0, 0), this);
+			}
+			for(var i = 0; i < this.objects.length; i++){
+				this.objects[i].Update(deltaTime);
+			}
 		}
+		this.scene.render();
 	}
 }
 

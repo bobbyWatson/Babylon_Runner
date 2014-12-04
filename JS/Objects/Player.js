@@ -15,7 +15,7 @@ var Player = function Player(Scene){
     this.mesh.material = mt_Player;
     var that = this;
 
-    Particle({
+    this.trail = Particle({
         name : "trail",
         scene : this.scene,
         emitter : this,
@@ -34,6 +34,7 @@ extend(Player, GameObject);
 
 Player.prototype.Update = function(deltaTime){
     this.GravityMove(deltaTime);
+
 }
 
 Player.prototype.GravityMove = function(deltaTime){
@@ -78,7 +79,7 @@ Player.prototype.Collision = function(other){
 }
 
 Player.prototype.Die = function(){
-    Particle({
+    var particleSystem = Particle({
         name : "Dying",
         scene : this.scene,
         emitter : this,
@@ -91,7 +92,10 @@ Player.prototype.Die = function(){
         dir1 : new BABYLON.Vector3(-50,50,0),
         dir2 : new BABYLON.Vector3(50, -50, 0)
     });
-    //stop ici l'émission de particles (Particles.js)
+    this.scene.running = false;
+    this.mesh.visibility = 0;
+    var trail = this.trail;
+    setTimeout(function(){particleSystem.stop(); trail.stop();}, 500);
 }
 
 Player.prototype.Intersects = function Intersects(myNextPos, myScale, otherPos, otherScale){
@@ -101,5 +105,4 @@ Player.prototype.Intersects = function Intersects(myNextPos, myScale, otherPos, 
 		!(myNextPos.y + myScale.y/2 <= otherPos.y - otherScale.y/2) 	&&
 		!(myNextPos.y - myScale.y/2 >= otherPos.y + otherScale.y/2)
 	);
-}
-    
+} 

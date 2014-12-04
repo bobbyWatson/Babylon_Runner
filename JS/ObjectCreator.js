@@ -34,7 +34,6 @@ function CreatePattern(pattern, position, scene){
 		param.scene = scene;
 		var pos = param.position;
 		param.position = new BABYLON.Vector3(pos.x + position.x, pos.y + position.y, pos.z + position.z);
-		console.log(param.position.x);
 		CreateObject(pattern[i].name, param);
 	}
 }
