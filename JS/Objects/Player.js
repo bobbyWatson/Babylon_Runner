@@ -6,6 +6,8 @@ var Player = function Player(Scene){
     this.floored = true;
     this.scene = Scene;
     this.speed = -10;
+    this.coinEffectTime = 0;
+    this.coinExploding = false;
     this.MoveVec = new BABYLON.Vector3(0,0,0);
     this.mesh = BABYLON.Mesh.CreateBox("Player", 1, Scene.scene);
     this.mesh.position = new BABYLON.Vector3(-15,10,0);
@@ -15,7 +17,7 @@ var Player = function Player(Scene){
     this.mesh.material = mt_Player;
     var that = this;
 
-    this.trail = Particle({
+   this.trail = Particle({
         name : "trail",
         scene : this.scene,
         emitter : this,
@@ -28,13 +30,28 @@ var Player = function Player(Scene){
         dir1 : new BABYLON.Vector3(-40, 0, 0),
         dir2 : new BABYLON.Vector3(-40, 0, 0)
     });
+
+    this.coinEffect = Particle({
+        name : "Explosion",
+        scene : this.scene,
+        emitter : this,
+        size : 0.5,
+        rate : 100,
+        life : 0.5,
+        minEmitBox : new BABYLON.Vector3(-0.5, 0, 0),
+        maxEmitBox : new BABYLON.Vector3(-0.5, 0, 0),
+        img : "img/coinParticle.png",
+        dir1 : new BABYLON.Vector3(-20, -20, 0),
+        dir2 : new BABYLON.Vector3(20, 20, 0)
+    });
+    this.coinEffect.stop();
 }
 
 extend(Player, GameObject);
 
 Player.prototype.Update = function(deltaTime){
     this.GravityMove(deltaTime);
-
+    this.coinExplosion(deltaTime);
 }
 
 Player.prototype.GravityMove = function(deltaTime){
@@ -68,7 +85,9 @@ Player.prototype.GravityMove = function(deltaTime){
 Player.prototype.Collision = function(other){
 	if(other.tag === "Collectible"){
         this.score++;
-        //call ici l'Explosion des collectibles (check dans collectible.js)
+        this.coinExploding = true;
+        this.coinEffectTime += 0.5;
+        this.coinEffect.start();
         DestroyObject(other, null, this.scene);
         this.scene.CoinEarned(this.score);
     }else if(other.tag === "Enemy"){
@@ -83,12 +102,12 @@ Player.prototype.Die = function(){
         name : "Dying",
         scene : this.scene,
         emitter : this,
-        size : 1,
+        size : 0.8,
         rate : 200,
         life : 0.5,
         minEmitBox : new BABYLON.Vector3(-0.5, 0, 0),
         maxEmitBox : new BABYLON.Vector3(-0.5, 0, 0),
-        img : "img/particle.png",
+        img : "img/bloodParticle.png",
         dir1 : new BABYLON.Vector3(-50,50,0),
         dir2 : new BABYLON.Vector3(50, -50, 0)
     });
@@ -106,3 +125,14 @@ Player.prototype.Intersects = function Intersects(myNextPos, myScale, otherPos, 
 		!(myNextPos.y - myScale.y/2 >= otherPos.y + otherScale.y/2)
 	);
 } 
+
+Player.prototype.coinExplosion = function coinExplosion(deltatime){
+    if(!this.coinExploding) return
+    this.coinEffectTime -= deltatime;
+    if(this.coinEffectTime <= 0){
+        this.coinEffectTime = 0;
+        this.coinEffect.stop();
+        this.coinExploding = false;
+    }
+
+}
