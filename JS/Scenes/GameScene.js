@@ -5,6 +5,7 @@ var GameScene = function GameScene(game){
 	this.inputs = new InputManager(); 
 	this.objects = [];
 	this.timePast = 0;
+	this.game = game;
 	this.LD = [
 		{nextLevelCoins : 30,speed : 10, frequency : 1.5},
 		{nextLevelCoins : 100, speed : 10.5, frequency : 1.3},
@@ -28,8 +29,20 @@ var GameScene = function GameScene(game){
 	var mt_bg = new BABYLON.StandardMaterial("Mt_Background", this.scene);
 	mt_bg.diffuseTexture = this.TX_BG;
 	BG_Plane.material = mt_bg;
-
 	this.TX_BG.drawText("0", 150, 500, "bold 700px Segoe UI", "white", "#000000");
+
+	//Retry GUI
+	this.retry_Plane = new BABYLON.Mesh.CreatePlane("background plane", 50, this.scene);
+	this.retry_Plane.position.z = 30;
+	this.retry_Plane.position.y = -25;
+	this.retry_Plane.position.x = 00;
+	this.TX_Retry = new BABYLON.DynamicTexture("retry texture", 1024, this.scene, true);
+	var mt_retry = new BABYLON.StandardMaterial("Mt_Background", this.scene);
+	mt_retry.diffuseTexture = this.TX_Retry;
+	this.retry_Plane.material = mt_retry;
+	mt_retry.diffuseColor = new BABYLON.Color3(1,1,1);
+	this.TX_Retry.drawText("Press Space to Retry", 100, 100, "bold 80px Segoe UI", "white", "#000000");
+	this.retry_Plane.visibility = 0;
 
 	this.player = new Player(this);
 	//BASE OBJECTS
@@ -66,6 +79,10 @@ var GameScene = function GameScene(game){
 			for(var i = 0; i < this.objects.length; i++){
 				this.objects[i].Update(deltaTime);
 			}
+		}else{
+			if(this.inputs.GetKey(32)){
+				this.game.Restart();
+			}
 		}
 		this.scene.render();
 	}
@@ -76,4 +93,9 @@ GameScene.prototype.CoinEarned = function CoinEarned(coinAmount){
 	if(coinAmount >= this.LD[this.currentLevel].nextLevelCoins){
 		this.currentLevel++;
 	}
+}
+
+GameScene.prototype.End = function End(){
+	this.running = false;
+	this.retry_Plane.visibility = 1;
 }

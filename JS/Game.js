@@ -12,3 +12,9 @@ var Game = function Game(engine){
 		_this.currentScene.Update(deltaTime);
 	});
 }
+
+Game.prototype.Restart = function Restart(){
+
+	this.gameScene = new GameScene(this);
+	this.currentScene = this.gameScene;
+}

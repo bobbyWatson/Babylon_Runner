@@ -111,10 +111,10 @@ Player.prototype.Die = function(){
         dir1 : new BABYLON.Vector3(-50,50,0),
         dir2 : new BABYLON.Vector3(50, -50, 0)
     });
-    this.scene.running = false;
     this.mesh.visibility = 0;
     var trail = this.trail;
     setTimeout(function(){particleSystem.stop(); trail.stop();}, 500);
+    this.scene.End();
 }
 
 Player.prototype.Intersects = function Intersects(myNextPos, myScale, otherPos, otherScale){
