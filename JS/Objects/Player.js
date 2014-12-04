@@ -67,12 +67,31 @@ Player.prototype.GravityMove = function(deltaTime){
 Player.prototype.Collision = function(other){
 	if(other.tag === "Collectible"){
         this.score++;
+        //call ici l'Explosion des collectibles (check dans collectible.js)
         DestroyObject(other, null, this.scene);
         this.scene.CoinEarned(this.score);
     }else if(other.tag === "Enemy"){
         console.log("t'es mort");
         //DestroyObject(other, null, this.scene);
+        this.Die();
     }
+}
+
+Player.prototype.Die = function(){
+    Particle({
+        name : "Dying",
+        scene : this.scene,
+        emitter : this,
+        size : 1,
+        rate : 200,
+        life : 0.5,
+        minEmitBox : new BABYLON.Vector3(-0.5, 0, 0),
+        maxEmitBox : new BABYLON.Vector3(-0.5, 0, 0),
+        img : "img/particle.png",
+        dir1 : new BABYLON.Vector3(-50,50,0),
+        dir2 : new BABYLON.Vector3(50, -50, 0)
+    });
+    //stop ici l'émission de particles (Particles.js)
 }
 
 Player.prototype.Intersects = function Intersects(myNextPos, myScale, otherPos, otherScale){

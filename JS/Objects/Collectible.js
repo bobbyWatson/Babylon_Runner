@@ -11,4 +11,20 @@ var Collectible = function Collectible(params){
 	this.mesh.material = mt_Collectible;
 }
 
+Collectible.prototype.Explosion = function() {
+	Particle({
+        name : "Explosion",
+        scene : this.scene,
+        emitter : this,
+        size : 0.3,
+        rate : 100,
+        life : 0.5,
+        minEmitBox : new BABYLON.Vector3(-0.5, 0, 0),
+        maxEmitBox : new BABYLON.Vector3(-0.5, 0, 0),
+        img : "img/particle.png",
+        dir1 : new BABYLON.Vector3(-20, -20, 0),
+        dir2 : new BABYLON.Vector3(20, 20, 0)
+    });
+}
+
 extend(Collectible, MovingObject)
