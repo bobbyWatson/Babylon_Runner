@@ -20,6 +20,9 @@ var GameScene = function GameScene(game){
 	camera.rotation = new BABYLON.Vector3(0.15,0,0);
 	this.scene.clearColor = new BABYLON.Color3(0,0,0);
 
+	console.log(camera);
+	console.log(this.scene);
+
 	//LIGHT
 	var light = new BABYLON.HemisphericLight("mainLight", new BABYLON.Vector3(50,-0.5,-20),this.scene);
 	//materials

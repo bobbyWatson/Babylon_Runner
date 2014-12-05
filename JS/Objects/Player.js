@@ -1,11 +1,11 @@
 var Player = function Player(Scene){
-    this.changeDelayMax = 1;
+    this.changeDelayMax = 0.8;
     this.changeDelay = 0;
     this.moving;
     this.score = 0;
     this.floored = true;
     this.scene = Scene;
-    this.speed = -10;
+    this.speed = -15;
     this.coinEffectTime = 0;
     this.coinExploding = false;
     this.MoveVec = new BABYLON.Vector3(0,0,0);
