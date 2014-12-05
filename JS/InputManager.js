@@ -1,3 +1,4 @@
+//input manager to instantiate in a scene
 var InputManager = function InputManager (){
 	
 	var _this = this;
@@ -11,6 +12,7 @@ var InputManager = function InputManager (){
 		pressedKeys[e.keyCode] = false;
 	});
 
+	//get if a key is down or not
 	this.GetKey = function GetKey(keycode){
 		return pressedKeys[keycode];
 	}

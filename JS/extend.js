@@ -1,3 +1,4 @@
+//heritance system
 function extend (child, parent){
 	for(var property in parent){
 		if(parent.hasOwnProperty(property)){

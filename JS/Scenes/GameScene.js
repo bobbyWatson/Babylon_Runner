@@ -7,13 +7,14 @@ var GameScene = function GameScene(game){
 	this.timePast = 0;
 	this.game = game;
 	this.speed = 15;
-	this.SPEED_INCREASING = 1;
+	this.SPEED_INCREASING = 0.6;
 	this.SPEED_MAX = 30;
 	this.frequency = 4;
 	this.FEQUENCY_INCREASING = 0.1;
 	this.FEQUENCY_MAX = 2.5;
 	this.currentLevel = 0;
 	this.running = true;
+	this.canRetry = false;
 	//CAMERA
 	var camera = new BABYLON.FreeCamera("mainCam", new BABYLON.Vector3(0,0,0), this.scene);
 	camera.position = new BABYLON.Vector3(-5, 11, -22);
@@ -63,9 +64,12 @@ var GameScene = function GameScene(game){
 
 	this.objects.push(this.player);
 
-	this.Update = function Update(deltaTime){
-		this.timePast+= deltaTime
+}
 
+//Update of the Game Scene
+GameScene.prototype.Update = function Update(deltaTime){
+	this.timePast+= deltaTime
+		//Create Patterns
 		if(this.running){
 			if(this.timePast >= this.frequency){
 				this.timePast -= this.frequency;
@@ -73,20 +77,25 @@ var GameScene = function GameScene(game){
 				var pattern = patterns[randomNB];
 				CreatePattern(pattern,new BABYLON.Vector3( 30, 0, 0), this);
 			}
+			//Move Objects
 			for(var i = 0; i < this.objects.length; i++){
 				this.objects[i].Update(deltaTime);
 			}
 		}else{
-			if(this.inputs.GetKey(32)){
+			//Restart
+			if(this.inputs.GetKey(32) && this.canRetry){
 				this.game.Restart();
 			}
 		}
+		//Render
 		this.scene.render();
-	}
 }
 
+//Function called when the player earns a coin
 GameScene.prototype.CoinEarned = function CoinEarned(coinAmount){
+	//increase score
 	this.TX_BG.drawText(coinAmount, 150, 500, "bold 700px Segoe UI", "white", "#000000");
+	//Increase Speed
 	this.speed += this.SPEED_INCREASING;
 	if(this.speed > this.SPEED_MAX){
 		this.speed = this.SPEED_MAX;
@@ -97,7 +106,9 @@ GameScene.prototype.CoinEarned = function CoinEarned(coinAmount){
 	}
 }
 
+// Player is dead
 GameScene.prototype.End = function End(){
 	this.running = false;
-	this.retry_Plane.visibility = 1;
+	var _this = this;
+	window.setTimeout(function(){_this.canRetry = true; _this.retry_Plane.visibility = 1;}, 1000);
 }

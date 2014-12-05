@@ -1,3 +1,4 @@
+//mines that kills you
 var Mine = function Mine(params){
 	this.scene = params.scene;
 	this.tag = "Enemy"

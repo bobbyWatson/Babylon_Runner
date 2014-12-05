@@ -1,3 +1,4 @@
+//mines that sterches up
 var MovingMine = function MovingMine(params){
     this.scene = params.scene;
     this.tag = "Enemy";
@@ -7,6 +8,7 @@ var MovingMine = function MovingMine(params){
     this.speed = this.scene.objectsSpeed;
     this.mesh.material = this.scene.materials.mt_movingMine;
 
+    //animation
     var animationBox = new BABYLON.Animation(
         "floating",
         "scaling.y",

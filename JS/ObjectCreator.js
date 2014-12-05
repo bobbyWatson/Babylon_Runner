@@ -1,3 +1,4 @@
+//Object creator. Used to create every moving object in the game
 function CreateObject(type, parameters){
 	var obj = new type(parameters);
 	parameters.scene.objects.push(obj);
@@ -13,6 +14,7 @@ function CreateObject(type, parameters){
     );
 }
 
+//destroying an object and deleting ir from the scene array
 function DestroyObject(obj, index, scene){
 	obj.mesh.dispose();
 	if(index == null){
@@ -27,6 +29,7 @@ function DestroyObject(obj, index, scene){
 	scene.objects.slice(index,1);
 }
 
+//Instantiation of a pattern
 function CreatePattern(pattern, position, scene){
 	for(var i = 0; i < pattern.length; i++){
 		var param = Object.create(pattern[i].params);

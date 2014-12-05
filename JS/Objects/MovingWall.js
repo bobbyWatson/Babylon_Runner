@@ -1,3 +1,4 @@
+//walkable walls
 var MovingWall = function MovingWall(params){
 	this.tag = "Wall";
 	this.scene = params.scene;

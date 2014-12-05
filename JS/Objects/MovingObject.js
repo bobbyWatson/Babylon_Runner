@@ -1,3 +1,4 @@
+//base class for every moving objects
 var MovingObject = function MovingObject(){
 	this.mesh = {};
 	this.scene;
