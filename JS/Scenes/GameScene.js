@@ -9,9 +9,9 @@ var GameScene = function GameScene(game){
 	this.speed = 15;
 	this.SPEED_INCREASING = 1;
 	this.SPEED_MAX = 30;
-	this.frequency = 1.5;
+	this.frequency = 4;
 	this.FEQUENCY_INCREASING = 0.1;
-	this.FEQUENCY_MAX = 2;
+	this.FEQUENCY_MAX = 2.5;
 	this.currentLevel = 0;
 	this.running = true;
 	//CAMERA
@@ -71,7 +71,7 @@ var GameScene = function GameScene(game){
 				this.timePast -= this.frequency;
 				var randomNB = Math.floor(Math.random() * Object.keys(patterns).length)
 				var pattern = patterns[randomNB];
-				CreatePattern(pattern,new BABYLON.Vector3( 50, 0, 0), this);
+				CreatePattern(pattern,new BABYLON.Vector3( 30, 0, 0), this);
 			}
 			for(var i = 0; i < this.objects.length; i++){
 				this.objects[i].Update(deltaTime);
@@ -91,8 +91,8 @@ GameScene.prototype.CoinEarned = function CoinEarned(coinAmount){
 	if(this.speed > this.SPEED_MAX){
 		this.speed = this.SPEED_MAX;
 	}
-	this.frequency += this.FEQUENCY_INCREASING;
-	if(this.frequency > this.FEQUENCY_MAX){
+	this.frequency -= this.FEQUENCY_INCREASING;
+	if(this.frequency < this.FEQUENCY_MAX){
 		this.frequency = this.FEQUENCY_MAX;
 	}
 }

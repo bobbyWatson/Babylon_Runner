@@ -20,7 +20,7 @@ var MovingMine = function MovingMine(params){
         value: 1
     }, {
         frame: 50,
-        value: 10
+        value: 5
     }, {
         frame: 100,
         value:1

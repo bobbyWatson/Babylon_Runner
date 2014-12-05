@@ -1,5 +1,5 @@
 var Player = function Player(Scene){
-    this.changeDelayMax = 0.5;
+    this.changeDelayMax = 0.2;
     this.changeDelay = 0;
     this.moving;
     this.score = 0;
