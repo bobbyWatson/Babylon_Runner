@@ -93,7 +93,7 @@ Player.prototype.Collision = function(other){
 	if(other.tag === "Collectible"){
         this.score++;
         this.coinExploding = true;
-        this.coinEffectTime += 0.5;
+        this.coinEffectTime += 0.1;
         this.coinEffect.start();
         DestroyObject(other, null, this.scene);
         this.scene.CoinEarned(this.score);

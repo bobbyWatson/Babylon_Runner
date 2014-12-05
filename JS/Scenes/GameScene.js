@@ -111,4 +111,8 @@ GameScene.prototype.End = function End(){
 	this.running = false;
 	var _this = this;
 	window.setTimeout(function(){_this.canRetry = true; _this.retry_Plane.visibility = 1;}, 1000);
+	var twitterBtn = document.getElementById("twitterBtn");
+	twitterBtn.href = twitterBtn.href.replace("myScore", this.player.score);
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+	window.setTimeout(function(){document.getElementById("twitterBtn").style.display = "block";}, 500);
 }
