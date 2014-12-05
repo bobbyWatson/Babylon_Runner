@@ -1,16 +1,23 @@
 html, body {
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: black;
-  }
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
 
   #renderCanvas {
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    display: block;
-    touch-action: none;
-  }
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  display: block;
+  touch-action: none;
+}
+
+.twitterBtn{
+  display: none;
+  position: absolute;
+  right: 43%;
+  bottom: 5%;
+}
