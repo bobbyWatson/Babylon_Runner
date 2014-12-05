@@ -6,11 +6,12 @@ var GameScene = function GameScene(game){
 	this.objects = [];
 	this.timePast = 0;
 	this.game = game;
-	this.LD = [
-		{nextLevelCoins : 30,speed : 10, frequency : 1.5},
-		{nextLevelCoins : 100, speed : 10.5, frequency : 1.3},
-		{speed : 20, frequency : 1.0}
-	]
+	this.speed = 10;
+	this.SPEED_INCREASING = 0.5;
+	this.SPEED_MAX = 25;
+	this.frequency = 1.5;
+	this.FEQUENCY_INCREASING = 0.1;
+	this.FEQUENCY_MAX = 2;
 	this.currentLevel = 0;
 	this.running = true;
 	//CAMERA
@@ -21,6 +22,8 @@ var GameScene = function GameScene(game){
 
 	//LIGHT
 	var light = new BABYLON.HemisphericLight("mainLight", new BABYLON.Vector3(50,-0.5,-20),this.scene);
+
+	
 	//Score GUI
 	var BG_Plane = new BABYLON.Mesh.CreatePlane("background plane", 20, this.scene);
 	BG_Plane.position.z = 40;
@@ -69,8 +72,8 @@ var GameScene = function GameScene(game){
 		this.timePast+= deltaTime
 
 		if(this.running){
-			if(this.timePast >= this.LD[this.currentLevel].frequency){
-				this.timePast -= this.LD[this.currentLevel].frequency;
+			if(this.timePast >= this.frequency){
+				this.timePast -= this.frequency;
 				var randomNB = Math.floor(Math.random() * Object.keys(patterns).length)
 				var pattern = patterns[randomNB];
 				CreatePattern(pattern,new BABYLON.Vector3( 50, 0, 0), this);
@@ -89,8 +92,13 @@ var GameScene = function GameScene(game){
 
 GameScene.prototype.CoinEarned = function CoinEarned(coinAmount){
 	this.TX_BG.drawText(coinAmount, 150, 500, "bold 700px Segoe UI", "white", "#000000");
-	if(coinAmount >= this.LD[this.currentLevel].nextLevelCoins){
-		this.currentLevel++;
+	this.speed += this.SPEED_INCREASING;
+	if(this.speed > this.SPEED_MAX){
+		this.speed = this.SPEED_MAX;
+	}
+	this.frequency += this.FEQUENCY_INCREASING;
+	if(this.frequency > this.FEQUENCY_MAX){
+		this.frequency = this.FEQUENCY_MAX;
 	}
 }
 
