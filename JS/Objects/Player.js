@@ -1,11 +1,11 @@
 var Player = function Player(Scene){
-    this.changeDelayMax = 0.8;
+    this.changeDelayMax = 0.5;
     this.changeDelay = 0;
     this.moving;
     this.score = 0;
     this.floored = true;
     this.scene = Scene;
-    this.speed = -15;
+    this.speed = 2;
     this.coinEffectTime = 0;
     this.coinExploding = false;
     this.MoveVec = new BABYLON.Vector3(0,0,0);
@@ -58,9 +58,10 @@ Player.prototype.GravityMove = function(deltaTime){
     var that = this;
     if(this.scene.inputs.GetKey(32) && this.changeDelay > this.changeDelayMax && this.floored){   
         this.changeDelay = 0;
-        this.speed = -this.speed
+        this.speed = -this.speed;
     }
-    this.MoveVec.y = this.speed * deltaTime;
+    var _speed = this.speed * this.scene.speed;
+    this.MoveVec.y = _speed * deltaTime;
     var nextPos = this.mesh.position.add(this.MoveVec);
     this.floored = false;
     for(var i = 0; i < this.scene.objects.length; i++){

@@ -6,9 +6,9 @@ var GameScene = function GameScene(game){
 	this.objects = [];
 	this.timePast = 0;
 	this.game = game;
-	this.speed = 10;
-	this.SPEED_INCREASING = 0.5;
-	this.SPEED_MAX = 25;
+	this.speed = 15;
+	this.SPEED_INCREASING = 1;
+	this.SPEED_MAX = 30;
 	this.frequency = 1.5;
 	this.FEQUENCY_INCREASING = 0.1;
 	this.FEQUENCY_MAX = 2;
@@ -16,12 +16,9 @@ var GameScene = function GameScene(game){
 	this.running = true;
 	//CAMERA
 	var camera = new BABYLON.FreeCamera("mainCam", new BABYLON.Vector3(0,0,0), this.scene);
-	camera.position = new BABYLON.Vector3(0, 11, -22);
-	camera.rotation = new BABYLON.Vector3(0.15,0,0);
+	camera.position = new BABYLON.Vector3(-5, 11, -22);
+	camera.rotation = new BABYLON.Vector3(0.15,0.1,0);
 	this.scene.clearColor = new BABYLON.Color3(0,0,0);
-
-	console.log(camera);
-	console.log(this.scene);
 
 	//LIGHT
 	var light = new BABYLON.HemisphericLight("mainLight", new BABYLON.Vector3(50,-0.5,-20),this.scene);
@@ -30,6 +27,7 @@ var GameScene = function GameScene(game){
 	//Score GUI
 	var BG_Plane = new BABYLON.Mesh.CreatePlane("background plane", 20, this.scene);
 	BG_Plane.position.z = 40;
+	BG_Plane.position.x = 10;
 	BG_Plane.material = this.materials.mt_bg;
 	this.TX_BG = new BABYLON.DynamicTexture("background texture", 1024, this.scene, true);
 	this.materials.mt_bg.diffuseTexture = this.TX_BG;
@@ -39,7 +37,7 @@ var GameScene = function GameScene(game){
 	this.retry_Plane = new BABYLON.Mesh.CreatePlane("background plane", 50, this.scene);
 	this.retry_Plane.position.z = 30;
 	this.retry_Plane.position.y = -25;
-	this.retry_Plane.position.x = 00;
+	this.retry_Plane.position.x = 5;
 	this.retry_Plane.material = this.materials.mt_retry;
 	this.retry_Plane.visibility = 0;
 
