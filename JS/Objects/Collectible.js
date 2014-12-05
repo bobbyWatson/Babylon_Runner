@@ -6,9 +6,8 @@ var Collectible = function Collectible(params){
 	this.mesh.position = params.position;
 	this.mesh.position.z = 0;
 	this.speed = this.scene.objectsSpeed;
-	var mt_Collectible = new BABYLON.StandardMaterial("Mt_Collectible", this.scene.scene);
-	mt_Collectible.diffuseColor = new BABYLON.Color3(0.75,0.75,0);
-	this.mesh.material = mt_Collectible;
+
+	this.mesh.material = this.scene.materials.mt_Collectible;
 }
 
 extend(Collectible, MovingObject)

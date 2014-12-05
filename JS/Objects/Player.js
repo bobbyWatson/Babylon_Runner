@@ -12,9 +12,7 @@ var Player = function Player(Scene){
     this.mesh = BABYLON.Mesh.CreateBox("Player", 1, Scene.scene);
     this.mesh.position = new BABYLON.Vector3(-15,10,0);
     this.mesh.scaling = new BABYLON.Vector3(1,2,1);
-    var mt_Player = new BABYLON.StandardMaterial("MT_Player", Scene.scene);
-    mt_Player.diffuseColor = new BABYLON.Color3(0.047, 0.137, 0.941);
-    this.mesh.material = mt_Player;
+    this.mesh.material = this.scene.materials.mt_Player;
     var that = this;
 
    this.trail = Particle({

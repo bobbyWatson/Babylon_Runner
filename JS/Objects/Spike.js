@@ -4,9 +4,7 @@ var Spike = function Spike(params){
 	this.mesh = BABYLON.Mesh.CreateBox("spike", 1, this.scene.scene);
 	this.mesh.scaling = new BABYLON.Vector3(params.length,2.5,4);
 	this.mesh.position.x = params.position;
-	var mt_spike = new BABYLON.StandardMaterial("MT_Spike", this.scene.scene);
-	mt_spike.diffuseColor = new BABYLON.Color3(0.75,0,0);
-	this.mesh.material = mt_spike;
+	this.mesh.material = this.scene.materials.mt_spike;
 	if(params.orientation === "top"){
 		this.mesh.rotation.x = Math.PI;
 		this.mesh.position.y = 15;

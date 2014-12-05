@@ -22,15 +22,14 @@ var GameScene = function GameScene(game){
 
 	//LIGHT
 	var light = new BABYLON.HemisphericLight("mainLight", new BABYLON.Vector3(50,-0.5,-20),this.scene);
-
-	
+	//materials
+	this.materials = Game_Material(this.scene);
 	//Score GUI
 	var BG_Plane = new BABYLON.Mesh.CreatePlane("background plane", 20, this.scene);
 	BG_Plane.position.z = 40;
+	BG_Plane.material = this.materials.mt_bg;
 	this.TX_BG = new BABYLON.DynamicTexture("background texture", 1024, this.scene, true);
-	var mt_bg = new BABYLON.StandardMaterial("Mt_Background", this.scene);
-	mt_bg.diffuseTexture = this.TX_BG;
-	BG_Plane.material = mt_bg;
+	this.materials.mt_bg.diffuseTexture = this.TX_BG;
 	this.TX_BG.drawText("0", 150, 500, "bold 700px Segoe UI", "white", "#000000");
 
 	//Retry GUI
@@ -38,12 +37,7 @@ var GameScene = function GameScene(game){
 	this.retry_Plane.position.z = 30;
 	this.retry_Plane.position.y = -25;
 	this.retry_Plane.position.x = 00;
-	this.TX_Retry = new BABYLON.DynamicTexture("retry texture", 1024, this.scene, true);
-	var mt_retry = new BABYLON.StandardMaterial("Mt_Background", this.scene);
-	mt_retry.diffuseTexture = this.TX_Retry;
-	this.retry_Plane.material = mt_retry;
-	mt_retry.diffuseColor = new BABYLON.Color3(1,1,1);
-	this.TX_Retry.drawText("Press Space to Retry", 100, 100, "bold 80px Segoe UI", "white", "#000000");
+	this.retry_Plane.material = this.materials.mt_retry;
 	this.retry_Plane.visibility = 0;
 
 	this.player = new Player(this);
