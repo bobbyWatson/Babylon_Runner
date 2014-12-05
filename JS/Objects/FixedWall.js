@@ -1,3 +1,4 @@
+//the two walls (top and down)
 var FixedWall = function FixedWall(params){
     this.scene = params.scene;
 	this.tag = "Wall";

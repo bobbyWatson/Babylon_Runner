@@ -1,3 +1,4 @@
+//instanciate a particle system fully configurable
 var Particle = function Particle(params){
     var particleSystem = new BABYLON.ParticleSystem(params.name,
     1000, params.scene.scene);

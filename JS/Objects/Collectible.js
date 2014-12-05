@@ -1,3 +1,4 @@
+//the collectibles to score
 var Collectible = function Collectible(params){
 	
 	this.scene = params.scene;

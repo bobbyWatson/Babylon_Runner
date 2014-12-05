@@ -1,3 +1,4 @@
+//All the materials for the game scene
 function Game_Material(scene){
 	var materials = {}
 	//coin number
@@ -40,6 +41,7 @@ function Game_Material(scene){
 	return materials;
 }
 
+//All the materials for the menu scene
 function Menu_Material(scene){
 
 	var materials = {};

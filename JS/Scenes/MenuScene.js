@@ -1,5 +1,6 @@
+//The of the game menu
 var MenuScene = function MenuScene(game){
-
+	//base variables
 	this.scene = new BABYLON.Scene(game.engine); 
 	var camera = new BABYLON.FreeCamera("mainCam", new BABYLON.Vector3(0,1,-10), this.scene);
 	var light = new BABYLON.HemisphericLight("mainLight", new BABYLON.Vector3(1,0,-0.5),this.scene);
@@ -19,8 +20,10 @@ var MenuScene = function MenuScene(game){
 	guiPlane.material = this.materials.guiMaterial;
 }
 	MenuScene.prototype.Update = function Update(deltaTime){
+		//update BG shader
         this.time += deltaTime/4;
 		this.materials.bgMaterial.setFloat("time", this.time);
+		//go to game scene
 		if(this.inputs.GetKey(32)){
 			this.game.StartGame();
 		}
