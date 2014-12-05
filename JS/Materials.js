@@ -28,7 +28,7 @@ function Game_Material(scene){
 	materials.mt_mine.diffuseColor = new BABYLON.Color3(0.75,0,0);
 	//movingMine
 	materials.mt_movingMine = new BABYLON.StandardMaterial("MT_Mine", scene);
-    materials.mt_movingMine.diffuseColor = new BABYLON.Color3(0,0.75,0);
+    materials.mt_movingMine.diffuseColor = new BABYLON.Color3(0.75,0,0);
     //movingWall
     materials.mt_movingWall = new BABYLON.StandardMaterial("MT_FixedWall", scene);
 	materials.mt_movingWall.diffuseColor = new BABYLON.Color3(0.18, 0.3, 0.3);
