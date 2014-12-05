@@ -11,7 +11,7 @@ var InvisibleWall = function InvisibleWall(params){
         emitter : this,
         size : 0.8,
         rate : 40,
-        life : 8 ,
+        life : 1 ,
         minEmitBox : new BABYLON.Vector3(0, 3, 0),
         maxEmitBox : new BABYLON.Vector3(0, -3, 0),
         img : "img/space.png",
