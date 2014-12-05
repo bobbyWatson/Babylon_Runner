@@ -4,7 +4,7 @@ var Game = function Game(engine){
 	this.engine = engine;
 	this.menuScene = new MenuScene(this);
 	this.gameScene = new GameScene(this);
-	this.currentScene = this.gameScene;
+	this.currentScene = this.menuScene;
 
 
 	engine.runRenderLoop(function() {
@@ -16,5 +16,10 @@ var Game = function Game(engine){
 Game.prototype.Restart = function Restart(){
 
 	this.gameScene = new GameScene(this);
+	this.currentScene = this.gameScene;
+}
+
+Game.prototype.StartGame = function StartGame(){
+
 	this.currentScene = this.gameScene;
 }
