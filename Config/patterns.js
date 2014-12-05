@@ -304,7 +304,7 @@ var patterns = [
 				},
 			}
 		}
-	]
+	],
     //Patern 10
     [
         {
@@ -396,7 +396,8 @@ var patterns = [
                     z : 0
                 },
             }
-        },
+        }
+    ],
         //Patern 11
     [
         {
@@ -579,8 +580,8 @@ var patterns = [
                     z   : 0
                 }
             }
-        },
-    ]
+        }
+    ],
     //pattern 12
     [
         {
@@ -617,8 +618,122 @@ var patterns = [
                 length : 6,
                 orientation : "top"
             }
+        }
+    ],
+    //Patern 6
+    [
+        {
+            name : Mine,
+            params : {
+                position : {
+                    x   : 3,
+                    y   : 1.5,
+                    z   : 0
+                }
+            }
         },
-    ]
+        {
+            name : Mine,
+            params : {
+                position : {
+                    x   : 3,
+                    y   : 15,
+                    z   : 0
+                }
+            }
+        },
+        {
+            name : Mine,
+            params : {
+                position : {
+                    x   : 3,
+                    y   : 2.5,
+                    z   : 0
+                }
+            }
+        },
+        {
+            name : Mine,
+            params : {
+                position : {
+                    x   : 3,
+                    y   : 14,
+                    z   : 0
+                }
+            }
+        },
+        {
+            name : Mine,
+            params : {
+                position : {
+                    x   : 23,
+                    y   : 1.5,
+                    z   : 0
+                }
+            }
+        },
+        {
+            name : Mine,
+            params : {
+                position : {
+                    x   : 23,
+                    y   : 15,
+                    z   : 0
+                }
+            }
+        },
+        {
+            name : Mine,
+            params : {
+                position : {
+                    x   : 23,
+                    y   : 2.5,
+                    z   : 0
+                }
+            }
+        },
+        {
+            name : Mine,
+            params : {
+                position : {
+                    x   : 23,
+                    y   : 14,
+                    z   : 0
+                }
+            }
+        },
+        {
+            name : Collectible,
+            params : {
+                position : {
+                    x   : 11,
+                    y   : 8,
+                    z   : 0
+                }
+            }
+        },
+        {
+            name : Collectible,
+            params : {
+                position : {
+                    x   : 13,
+                    y   : 8,
+                    z   : 0
+                }
+            }
+        },
+        {
+            name : Collectible,
+            params : {
+                position : {
+                    x   : 15,
+                    y   : 8,
+                    z   : 0
+                }
+            }
+        }
+        
+    ],
     //Patern 6
     [
         {
@@ -741,120 +856,6 @@ var patterns = [
                 },
                 length : 12
             }
-        },
-    ]
-    //Patern 6
-    [
-        {
-            name : Mine,
-            params : {
-                position : {
-                    x   : 3,
-                    y   : 1.5,
-                    z   : 0
-                }
-            }
-        },
-        {
-            name : Mine,
-            params : {
-                position : {
-                    x   : 3,
-                    y   : 15,
-                    z   : 0
-                }
-            }
-        },
-        {
-            name : Mine,
-            params : {
-                position : {
-                    x   : 3,
-                    y   : 2.5,
-                    z   : 0
-                }
-            }
-        },
-        {
-            name : Mine,
-            params : {
-                position : {
-                    x   : 3,
-                    y   : 14,
-                    z   : 0
-                }
-            }
-        },
-        {
-            name : Mine,
-            params : {
-                position : {
-                    x   : 23,
-                    y   : 1.5,
-                    z   : 0
-                }
-            }
-        },
-        {
-            name : Mine,
-            params : {
-                position : {
-                    x   : 23,
-                    y   : 15,
-                    z   : 0
-                }
-            }
-        },
-        {
-            name : Mine,
-            params : {
-                position : {
-                    x   : 23,
-                    y   : 2.5,
-                    z   : 0
-                }
-            }
-        },
-        {
-            name : Mine,
-            params : {
-                position : {
-                    x   : 23,
-                    y   : 14,
-                    z   : 0
-                }
-            }
-        },
-        {
-            name : Collectible,
-            params : {
-                position : {
-                    x   : 13,
-                    y   : 6,
-                    z   : 0
-                }
-            }
-        },
-        {
-            name : Collectible,
-            params : {
-                position : {
-                    x   : 11,
-                    y   : 8,
-                    z   : 0
-                }
-            }
-        },
-        {
-            name : MovingWall,
-            params : {
-                position : {
-                    x : 13,
-                    y : 4,
-                    z : 0
-                },
-                length : 12
-            }
-        },
+        }
     ]
 ]
