@@ -84,6 +84,7 @@ GameScene.prototype.Update = function Update(deltaTime){
 		}else{
 			//Restart
 			if(this.inputs.GetKey(32) && this.canRetry){
+				this.DestroyTwitter();
 				this.game.Restart();
 			}
 		}
@@ -111,8 +112,20 @@ GameScene.prototype.End = function End(){
 	this.running = false;
 	var _this = this;
 	window.setTimeout(function(){_this.canRetry = true; _this.retry_Plane.visibility = 1;}, 1000);
-	var twitterBtn = document.getElementById("twitterBtn");
-	twitterBtn.href = twitterBtn.href.replace("myScore", this.player.score);
+	this.ShowTwitter();
+}
+
+GameScene.prototype.ShowTwitter = function ShowTwitter(){
+	var twitterBtn = document.createElement("a");
+	twitterBtn.href = "https://twitter.com/intent/tweet?button_hashtag=spaaace&text=Hey%2C%20I%20scored%20" + this.player.score + "%20points%20in%20Spaaaace";
+	twitterBtn.className ="twitter-hashtag-button twitterBtn";
+	twitterBtn.dataset.size="large";
+	twitterBtn.dataset.url= "http://louiscabrera.fr/spaaace";
+	twitterBtn.innerHTML = "Tweet my score";
+	document.body.appendChild(twitterBtn);
 	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-	window.setTimeout(function(){document.getElementById("twitterBtn").style.display = "block";}, 500);
+}
+
+GameScene.prototype.DestroyTwitter = function DestroyTwitter(){
+	document.getElementById("twitter-widget-0").remove();
 }

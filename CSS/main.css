@@ -16,7 +16,6 @@ html, body {
 }
 
 .twitterBtn{
-  display: none;
   position: absolute;
   right: 43%;
   bottom: 5%;
